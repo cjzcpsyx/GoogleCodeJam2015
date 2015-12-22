@@ -10,15 +10,11 @@ public class A {
 
 			int total = 0, numFriends = 0;
 			for (int j = 0; j <= sMax; j++) {
-				int a = s.charAt(j) - '0';
-				if (a > 0 && total < j) {
-					numFriends += j - total;
-					total = j;
-				}
-				total += a;
+				numFriends = Math.max(numFriends, j - total);
+				total += Integer.parseInt(Character.toString(s.charAt(j)));
 			}
 
-			System.out.printf("Case #%d: %d\n", i+1, numFriends);
+			System.out.printf("Case #%d: %d\n", i + 1, numFriends);
 		}
 	}
 }

@@ -17,14 +17,14 @@ public class B {
 			int max = p[n-1];
 			int total = max;
 			for (int k = 1; k <= max; k++) {
-				int current = k;
-				for (int l = 0; l < n; l++) {
-					current += (p[l] - 1) / k;
+				int total_moves = 0;
+				for (int l : p) {
+					total_moves += (l - 1) / k;
 				}
-				total = Math.min(total, current);
+				total = Math.min(total, total_moves + k);
 			}
 
-			System.out.printf("Case #%d: %d\n", i+1, total);
+			System.out.printf("Case #%d: %d\n", i + 1, total);
 		}
 	}
 }
