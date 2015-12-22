@@ -18,12 +18,27 @@ public class C {
 	}
 
 
-	private static int power(int a, int n) {
+	private static int power(int a, long n) {
 		int value = 1;
 		for (int i = 0; i < n % 4; i++) {
 			value = mul(value, a);
 		}
 		return value;
+	}
+
+	private static boolean checkIJ(String s, int l, long x) {
+		int iValue = 1;
+		int jValue = 1;
+		for (int i = 0; i < x; i++) {
+			for (int j = 0; j < l; j++) {
+				if (iValue != 2) {
+					iValue = mul(iValue, (int) s.charAt(j) - (int) 'i' + 2);
+				} else if (jValue != 3) {
+					jValue = mul(jValue, (int) s.charAt(j) - (int) 'i' + 2);
+				}
+			}
+		}
+		return iValue == 2 && jValue == 3;
 	}
 
 
@@ -32,10 +47,10 @@ public class C {
 		int numCases = input.nextInt();
 		
 		for (int i = 0; i < numCases; i++) {
-			int L = input.nextInt();
-			int X = input.nextInt();
+			int L =  Integer.parseInt(input.next());
+			long X =  Long.parseLong(input.next());
 			String s = input.next();
-			Boolean result = true;
+			boolean result = true;
 
 			int all = 1;
 			for (int l = 0; l < L; l++) {
@@ -44,8 +59,7 @@ public class C {
 			all = power(all, X);
 			result = result && (all == -1) ? true : false;
 
-
-
+			result = result && checkIJ(s, L, Math.min(8, X));
 
 			System.out.printf("Case #%d: %s\n", i + 1, result ? "YES" : "NO");
 		}
